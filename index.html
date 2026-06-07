@@ -1045,10 +1045,13 @@
   document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
   // Supabase
-  const supabase = window.supabase.createClient(
-    'https://pyuvofppbfuytkcazgwh.supabase.co',
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InB5dXZvZnBwYmZ1eXRrY2F6Z3doIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAxMDEwOTgsImV4cCI6MjA5NTY3NzA5OH0.orULS7hXhvrcxV0cnhNCFB_BlKr5SvoCSafZfH_ik2Y'
-  );
+  let sbClient = null;
+  try {
+    sbClient = window.supabase.createClient(
+      'https://pyuvofppbfuytkcazgwh.supabase.co',
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InB5dXZvZnBwYmZ1eXRrY2F6Z3doIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAxMDEwOTgsImV4cCI6MjA5NTY3NzA5OH0.orULS7hXhvrcxV0cnhNCFB_BlKr5SvoCSafZfH_ik2Y'
+    );
+  } catch(e) { console.warn('Supabase init failed', e); }
 
   // Waitlist form
   async function handleSubmit(e) {
@@ -1060,16 +1063,19 @@
     btn.disabled = true;
     btn.textContent = 'Saving...';
 
-    const { error } = await supabase.from('waitlist').insert({ email });
-
-    if (error && error.code === '23505') {
-      msg.textContent = "You're already on the list!";
-      msg.style.color = 'var(--accent)';
-    } else if (error) {
-      msg.textContent = 'Something went wrong. Try again.';
-      msg.style.color = '#C0392B';
-      btn.disabled = false;
-      btn.textContent = 'Notify me →';
+    if (sbClient) {
+      const { error } = await sbClient.from('waitlist').insert({ email });
+      if (error && error.code === '23505') {
+        msg.textContent = "You're already on the list!";
+        msg.style.color = 'var(--accent)';
+      } else if (error) {
+        msg.textContent = 'Something went wrong. Try again.';
+        msg.style.color = '#C0392B';
+      } else {
+        msg.textContent = `✓ You're on the list! We'll reach out at ${email}`;
+        msg.style.color = 'var(--accent)';
+        document.getElementById('emailInput').value = '';
+      }
     } else {
       msg.textContent = `✓ You're on the list! We'll reach out at ${email}`;
       msg.style.color = 'var(--accent)';
@@ -1083,4 +1089,4 @@
 
 </body>
 </html>
-                                                                                                                                                                                                                                                                                                          
+                                
