@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SimplifyingData — AI tools for growing businesses</title>
   <meta name="description" content="AI-powered tools that turn your everyday business data into clear decisions. Built for small and medium businesses." />
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
@@ -1038,17 +1039,43 @@
 
   document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
-  // Email form
-  function handleSubmit(e) {
+  // Supabase
+  const supabase = window.supabase.createClient(
+    'https://pyuvofppbfuytkcazgwh.supabase.co',
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InB5dXZvZnBwYmZ1eXRrY2F6Z3doIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAxMDEwOTgsImV4cCI6MjA5NTY3NzA5OH0.orULS7hXhvrcxV0cnhNCFB_BlKr5SvoCSafZfH_ik2Y'
+  );
+
+  // Waitlist form
+  async function handleSubmit(e) {
     e.preventDefault();
     const email = document.getElementById('emailInput').value;
+    const btn = e.target.querySelector('button');
     const msg = document.getElementById('formMsg');
-    msg.textContent = `✓ You're on the list! We'll reach out at ${email}`;
-    msg.style.color = 'var(--accent)';
-    document.getElementById('emailInput').value = '';
+
+    btn.disabled = true;
+    btn.textContent = 'Saving...';
+
+    const { error } = await supabase.from('waitlist').insert({ email });
+
+    if (error && error.code === '23505') {
+      msg.textContent = "You're already on the list!";
+      msg.style.color = 'var(--accent)';
+    } else if (error) {
+      msg.textContent = 'Something went wrong. Try again.';
+      msg.style.color = '#C0392B';
+      btn.disabled = false;
+      btn.textContent = 'Notify me →';
+    } else {
+      msg.textContent = `✓ You're on the list! We'll reach out at ${email}`;
+      msg.style.color = 'var(--accent)';
+      document.getElementById('emailInput').value = '';
+    }
+
+    btn.disabled = false;
+    btn.textContent = 'Notify me →';
   }
 </script>
 
 </body>
 </html>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
