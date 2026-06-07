@@ -811,12 +811,15 @@
 
     /* ── FADE IN ── */
     .fade-in {
-      opacity: 0;
-      transform: translateY(24px);
       transition: opacity 0.6s ease, transform 0.6s ease;
     }
 
-    .fade-in.visible {
+    .js-ready .fade-in {
+      opacity: 0;
+      transform: translateY(24px);
+    }
+
+    .js-ready .fade-in.visible {
       opacity: 1;
       transform: none;
     }
@@ -1118,4 +1121,4 @@
       <hr class="pricing-divider" />
       <ul class="pricing-features">
         <li><div class="pricing-check">✓</div><div><strong>Dedicated dashboard</strong> — your own private instance at a custom URL</div></li>
-        <li><div class="pricing-check">✓</div><div><strong>Unlimited fi
+        <li><div class="pric
