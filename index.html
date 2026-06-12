@@ -1043,7 +1043,7 @@
           <span style="font-size:32px;font-weight:900;letter-spacing:-1px;color:var(--text);">$199</span>
           <span style="font-size:13px;color:var(--text3);font-weight:500;">one-time</span>
         </div>
-        <a href="#" id="buyBtn" class="btn btn-dark" style="width:100%;justify-content:center;margin-bottom:10px;">Get BizAnalyst AI →</a>
+        <a href="https://simplifyingdata.lemonsqueezy.com/checkout/buy/fd945053-a0c8-45d3-b677-eab98150bf54" id="buyBtn" class="btn btn-dark" style="width:100%;justify-content:center;margin-bottom:10px;" target="_blank">Get BizAnalyst AI →</a>
         <a href="https://bizanalyst.vercel.app" target="_blank" class="prod-link" style="font-size:12.5px;">See a live demo →</a>
         <p style="font-size:11px;color:var(--text3);margin-top:10px;line-height:1.6;">AI chat requires a free <a href="https://console.anthropic.com" target="_blank" style="color:var(--accent);text-decoration:none;">Anthropic API key</a> — ~$2/mo billed by Anthropic.</p>
       </div>
@@ -1114,4 +1114,90 @@
     </div>
   </div>
 </section>
-
+
+<!-- CTA -->
+<section class="cta-section" id="contact">
+  <div class="cta-box fade-in">
+    <div class="cta-icon">✉️</div>
+    <h2>Get early access</h2>
+    <p>Be first to try new tools as we build them. No spam — just a heads-up when something useful lands.</p>
+    <form class="cta-form" onsubmit="handleSubmit(event)">
+      <input type="email" id="emailInput" placeholder="your@email.com" required />
+      <button type="submit" class="btn btn-dark">Notify me →</button>
+    </form>
+    <p class="cta-note" id="formMsg">No credit card. No commitment. Unsubscribe anytime.</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo"><em>Simplifying</em>Data</div>
+    <div class="footer-copy">© 2026 SimplifyingData · Made with ♥ for growing businesses</div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<script>
+  // Scroll fade-in — only activate animations once JS is confirmed running
+  document.documentElement.classList.add('js-ready');
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        const siblings = e.target.parentElement.querySelectorAll('.fade-in');
+        siblings.forEach((s, i) => {
+          s.style.transitionDelay = `${i * 60}ms`;
+        });
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  // Supabase
+  let sbClient = null;
+  try {
+    sbClient = window.supabase.createClient(
+      'https://pyuvofppbfuytkcazgwh.supabase.co',
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InB5dXZvZnBwYmZ1eXRrY2F6Z3doIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAxMDEwOTgsImV4cCI6MjA5NTY3NzA5OH0.orULS7hXhvrcxV0cnhNCFB_BlKr5SvoCSafZfH_ik2Y'
+    );
+  } catch(e) { console.warn('Supabase init failed', e); }
+
+  // Waitlist form
+  async function handleSubmit(e) {
+    e.preventDefault();
+    const email = document.getElementById('emailInput').value;
+    const btn = e.target.querySelector('button');
+    const msg = document.getElementById('formMsg');
+
+    btn.disabled = true;
+    btn.textContent = 'Saving...';
+
+    if (sbClient) {
+      const { error } = await sbClient.from('waitlist').insert({ email });
+      if (error && error.code === '23505') {
+        msg.textContent = "You're already on the list!";
+        msg.style.color = 'var(--accent)';
+      } else if (error) {
+        msg.textContent = 'Something went wrong. Try again.';
+        msg.style.color = '#C0392B';
+      } else {
+        msg.textContent = `✓ You're on the list! We'll reach out at ${email}`;
+        msg.style.color = 'var(--accent)';
+        document.getElementById('emailInput').value = '';
+      }
+    } else {
+      msg.textContent = `✓ You're on the list! We'll reach out at ${email}`;
+      msg.style.color = 'var(--accent)';
+      document.getElementById('emailInput').value = '';
+    }
+
+    btn.disabled = false;
+    btn.textContent = 'Notify me →';
+  }
+</script>
+
+</body>
+</html>
