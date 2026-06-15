@@ -34,6 +34,13 @@ Customer buys on simplifyingdata.co (Lemon Squeezy checkout)
   → Customer clicks email link → sets password → lands on dashboard
 ```
 
+### Keys & Secrets
+| Key | Value | Where |
+|-----|-------|-------|
+| `RESEND_API_KEY` | `re_RgbZ9335_FNPQrRbUg2BQmiXvgsP38T2p` | SimplifyingData Vercel |
+| `INTERNAL_API_KEY` | `sd-internal-2026` | SimplifyingData Vercel + BizAnalyst Vercel |
+| `CENTRAL_EMAIL_URL` | `https://simplifyingdata.co/api/send-email` | BizAnalyst Vercel |
+
 ### Tools & Services
 | Service | Purpose | Notes |
 |---------|---------|-------|
@@ -74,18 +81,8 @@ Customer buys on simplifyingdata.co (Lemon Squeezy checkout)
 ---
 
 ## Cowork Session Structure
-| Session | Folder | Handles |
-|---------|--------|---------|
-| SimplifyingData architecture (this) | `C:\Users\julia\GitHub\simplifyingdata` | Landing page, marketing, Lemon Squeezy config |
-| AI Biz | `C:\Users\julia\GitHub\bizanalyst` | Webhook, dashboard, Supabase schema, bug fixes |
-
-> Both sessions share the same Supabase MCP — either can query/fix the DB directly.
-
----
-
-## Push Workflow
-Claude can't push directly via file tools. Uses sandbox clone method:
-```bash
-git clone https://<token>@github.com/juliautomo/simplifyingdata.git repo
-cp <updated file> repo/
-cd repo && git config user.email "julia.utomo@gmail.com" && git config user.name "Julia" && git add -A && git commit -m "message" &&
+| Session | Repo | Handles |
+|---------|------|---------|
+| SimplifyingData (this) | `juliautomo/simplifyingdata` | Landing page, central email service, Lemon Squeezy config, platform-level changes |
+| BizAnalyst | `juliautomo/bizanalyst` | Dashboard, BizAnalyst webhook, Supabase schema, BizAnalyst bug fixes |
+| SimplifyingLeads | (Railway) | Leads Generator webhook, le
