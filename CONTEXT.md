@@ -88,6 +88,4 @@ Claude can't push directly via file tools. Uses sandbox clone method:
 ```bash
 git clone https://<token>@github.com/juliautomo/simplifyingdata.git repo
 cp <updated file> repo/
-cd repo && git commit -am "message" && git push origin main
-```
-GitHub token: regenerate at github.com/settings/tokens when needed.
+cd repo && git config user.email "julia.utomo@gmail.com" && git config user.name "Julia" && git add -A && git commit -m "message" &&
