@@ -37,7 +37,7 @@ Customer buys on simplifyingdata.co (Lemon Squeezy checkout)
 ### Keys & Secrets
 | Key | Value | Where |
 |-----|-------|-------|
-| `RESEND_API_KEY` | `re_RgbZ9335_FNPQrRbUg2BQmiXvgsP38T2p` | SimplifyingData Vercel |
+| `RESEND_API_KEY` | *(see Vercel env vars — do not store here)* | SimplifyingData Vercel |
 | `INTERNAL_API_KEY` | `sd-internal-2026` | SimplifyingData Vercel + BizAnalyst Vercel |
 | `CENTRAL_EMAIL_URL` | `https://simplifyingdata.co/api/send-email` | BizAnalyst Vercel |
 
@@ -85,4 +85,4 @@ Customer buys on simplifyingdata.co (Lemon Squeezy checkout)
 |---------|------|---------|
 | SimplifyingData (this) | `juliautomo/simplifyingdata` | Landing page, central email service, Lemon Squeezy config, platform-level changes |
 | BizAnalyst | `juliautomo/bizanalyst` | Dashboard, BizAnalyst webhook, Supabase schema, BizAnalyst bug fixes |
-| SimplifyingLeads | (Railway) | Leads Generator webhook, le
+| SimplifyingLeads | (Railway) | Leads Generator webh
