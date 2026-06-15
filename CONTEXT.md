@@ -17,7 +17,8 @@
 - ✅ Supabase redirect URL confirmed working
 
 ### Pending
-- ⏳ Next product — add to landing page when ready
+- ✅ Leads Generator product card added to landing page ($199 one-time)
+- ⏳ Leads Generator — build the actual product (same provisioning flow as BizAnalyst)
 
 ---
 
@@ -42,7 +43,11 @@ Customer buys on simplifyingdata.co (Lemon Squeezy checkout)
 | Supabase | DB + Auth | Project: `pyuvofppbfuytkcazgwh`, shared with BizAnalyst |
 
 ### Lemon Squeezy
-- **Checkout URL:** `https://simplifyingdata.lemonsqueezy.com/checkout/buy/fd945053-a0c8-45d3-b677-eab98150bf54`
+- **BizAnalyst Checkout URL:** `https://simplifyingdata.lemonsqueezy.com/checkout/buy/fd945053-a0c8-45d3-b677-eab98150bf54`
+- **Leads Generator Checkout URL:** `https://simplifyingdata.lemonsqueezy.com/checkout/buy/98f9976e-17e1-4c42-bca2-74fdc5c43dec`
+- **Leads Generator Webhook URL:** `https://web-production-f0838.up.railway.app/webhook/lemonsqueezy`
+- **Leads Generator Webhook Secret:** `sl-webhook-2026-secret` (stored as env var on Railway)
+- **Leads Generator App:** `https://simplifying-leads.vercel.app/` (frontend on Vercel, backend on Railway)
 - **Webhook secret:** `bizanalyst-webhook-2026` (stored as Vercel env var `LEMON_SQUEEZY_WEBHOOK_SECRET`)
 - **Webhook URL:** `https://bizanalyst.vercel.app/api/webhook`
 - **Event:** `order_created`
@@ -85,4 +90,4 @@ git clone https://<token>@github.com/juliautomo/simplifyingdata.git repo
 cp <updated file> repo/
 cd repo && git commit -am "message" && git push origin main
 ```
-GitHub token: regenerate at github.com/settings/tokens when ne
+GitHub token: regenerate at github.com/settings/tokens when needed.
