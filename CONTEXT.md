@@ -21,7 +21,7 @@
 - ✅ Custom tool card: white button + SimplifyingData wordmark
 
 ### Pending
-- ⏳ Build out the Leads Generator product (dashboard/app) — same provisioning flow as BizAnalyst
+- Nothing — both products fully shipped and working end-to-end
 
 ---
 
@@ -78,4 +78,5 @@ Leads Generator order (product_id 1143694):
 ### Supabase Tables (this project touches)
 | Table | Access | Purpose |
 |-------|--------|---------|
-| `waitlist` | Insert-only (anon) | Stores emails from land
+| `waitlist` | Insert-only (anon) | Stores emails from landing page form |
+| `auth.users` | Wri
