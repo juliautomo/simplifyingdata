@@ -21,9 +21,7 @@
 - ✅ Custom tool card: white button + SimplifyingData wordmark
 
 ### Pending
-- ⏳ BizAnalyst session: add product ID filter (skip orders where product_id ≠ 1125235) — low priority since Railway already filters on its end
-- ⏳ SimplifyingLeads session: fix `redirect_to` in `generate_recovery_link` — should point to `https://simplifying-leads.vercel.app`, not `simplifyingdata.co`
-- ⏳ SimplifyingLeads session: fix `ensure_client_row_by_email` using wrong Supabase API endpoint
+- ⏳ Build out the Leads Generator product (dashboard/app) — same provisioning flow as BizAnalyst
 
 ---
 
@@ -73,4 +71,11 @@ Leads Generator order (product_id 1143694):
 - **Leads Generator Webhook URL:** `https://web-production-f0838.up.railway.app/webhook/lemonsqueezy`
 - **Leads Generator Webhook Secret:** `sl-webhook-2026-secret` (stored as env var on Railway)
 - **Leads Generator App:** `https://simplifying-leads.vercel.app/` (frontend on Vercel, backend on Railway)
-- **Webhook secret:** `bizanalyst-webhook-2026` (
+- **Webhook secret:** `bizanalyst-webhook-2026` (stored as Vercel env var `LEMON_SQUEEZY_WEBHOOK_SECRET`)
+- **Webhook URL:** `https://bizanalyst.vercel.app/api/webhook`
+- **Event:** `order_created`
+
+### Supabase Tables (this project touches)
+| Table | Access | Purpose |
+|-------|--------|---------|
+| `waitlist` | Insert-only (anon) | Stores emails from land
