@@ -383,22 +383,10 @@
   </div>
 </section>
 
-<!-- FOOTER -->
-<footer>
-  <div class="footer-inner">
-    <div class="footer-logo"><em>Simplifying</em>Data</div>
-    <div class="footer-copy">© 2026 SimplifyingData · <a href="/" style="color:var(--text3);text-decoration:none;">All tools</a></div>
-  </div>
-</footer>
-
-<script>
-  document.documentElement.classList.add('js-ready');
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add('visible');
-        const siblings = e.target.parentElement.querySelectorAll('.fade-in');
-        siblings.forEach((s,i) => { s.style.transitionDelay = `${i * 60}ms`; });
-      }
-    });
-  }, { threshold: 0.
+<!-- CONTACT -->
+<section style="padding:64px 24px;background:var(--bg2);text-align:center;">
+  <div style="max-width:520px;margin:0 auto;">
+    <div style="font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent);margin-bottom:12px;">Have questions?</div>
+    <h2 style="font-size:clamp(24px,3.5vw,36px);font-weight:800;letter-spacing:-1px;color:var(--text);margin-bottom:12px;">We're here to help</h2>
+    <p style="font-size:15px;color:var(--text2);line-height:1.7;margin-bottom:28px;">Not sure if Leads Generator is right for you? Ask us anything — we reply within 24 hours.</p>
+    <a href="mailto:julia.utomo@gmail.com" style="display:inl
