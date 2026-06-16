@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BizAnalyst AI — Sales Intelligence for Growing Businesses</title>
+  <meta name="description" content="Upload your Excel, get instant KPIs, charts, and AI answers. No data team needed." />
+  <link rel="canonical" href="https://simplifyingdata.co/bizanalyst" />
+  <meta property="og:title" content="BizAnalyst AI — Sales Intelligence for Growing Businesses" />
+  <meta property="og:description" content="Upload your Excel, get instant KPIs, charts, and AI answers. No data team needed." />
+  <meta property="og:url" content="https://simplifyingdata.co/bizanalyst" />
+  <meta property="og:type" content="website" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #F7F6F2;
+      --bg2: #EFEDE8;
+      --text: #16150F;
+      --text2: #6B6860;
+      --text3: #9E9C97;
+      --accent: #3D6B4F;
+      --accent2: #5A9E73;
+      --accent-light: #E8F2EB;
+      --border: #E2E0DA;
+      --white: #FFFFFF;
+      --card: #FFFFFF;
+      --radius: 16px;
+    }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 16px; left: 50%; transform: translateX(-50%);
+      z-index: 200; width: calc(100% - 48px); max-width: 1000px;
+      background: rgba(247,246,242,0.82); backdrop-filter: blur(20px);
+      border: 1px solid var(--border); border-radius: 100px;
+      padding: 10px 10px 10px 28px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo { font-size: 15px; font-weight: 800; color: var(--text); text-decoration: none; letter-spacing: -0.4px; }
+    .nav-logo em { font-style: normal; color: var(--accent); }
+    .nav-links { display: flex; align-items: center; gap: 4px; list-style: none; }
+    .nav-links a { font-size: 13.5px; font-weight: 500; color: var(--text2); text-decoration: none; padding: 7px 14px; border-radius: 100px; transition: color 0.2s, background 0.2s; }
+    .nav-links a:hover { color: var(--text); background: var(--bg2); }
+    .nav-cta { background: var(--text) !important; color: var(--bg) !important; font-weight: 600 !important; padding: 9px 20px !important; }
+    .nav-cta:hover { opacity: 0.85 !important; }
+
+    /* HERO */
+    .hero { padding: 140px 24px 80px; text-align: center; position: relative; }
+    .hero::before {
+      content: ''; position: absolute; top: 80px; left: 50%; transform: translateX(-50%);
+      width: 600px; height: 400px;
+      background: radial-gradient(ellipse at center, rgba(90,158,115,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .product-eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--card); border: 1px solid var(--border);
+      color: var(--text2); font-size: 12.5px; font-weight: 600;
+      padding: 6px 14px 6px 8px; border-radius: 100px; margin-bottom: 32px;
+    }
+    .eyebrow-icon {
+      width: 24px; height: 24px; background: var(--accent-light); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center; font-size: 13px;
+    }
+
+    h1 { font-size: clamp(38px, 6vw, 72px); font-weight: 900; line-height: 1.05; letter-spacing: -3px; color: var(--text); margin-bottom: 20px; max-width: 760px; margin-left: auto; margin-right: auto; }
+    h1 .green { color: var(--accent); }
+
+    .hero-sub { font-size: 18px; color: var(--text2); line-height: 1.75; max-width: 500px; margin: 0 auto 40px; }
+
+    .hero-actions { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-bottom: 64px; }
+
+    .btn { display: inline-flex; align-items: center; gap: 6px; font-family: inherit; font-size: 14.5px; font-weight: 600; padding: 13px 24px; border-radius: 100px; border: none; cursor: pointer; text-decoration: none; transition: all 0.2s; }
+    .btn-dark { background: var(--text); color: var(--bg); }
+    .btn-dark:hover { opacity: 0.85; transform: translateY(-1px); }
+    .btn-ghost { background: transparent; color: var(--text2); border: 1.5px solid var(--border); }
+    .btn-ghost:hover { border-color: var(--text2); color: var(--text); transform: translateY(-1px); }
+
+    .price-note { font-size: 13px; color: var(--text3); margin-top: 12px; }
+
+    /* MOCKUP */
+    .mockup-wrap { max-width: 880px; margin: 0 auto; padding: 0 24px; perspective: 1200px; }
+    .mockup { background: var(--card); border: 1px solid var(--border); border-radius: 20px; overflow: hidden; box-shadow: 0 2px 0 #E2E0DA, 0 8px 60px rgba(0,0,0,0.1), 0 32px 80px rgba(0,0,0,0.06); transform: rotateX(4deg); transform-origin: bottom center; }
+    .mockup-bar { background: var(--bg2); border-bottom: 1px solid var(--border); padding: 11px 18px; display: flex; align-items: center; gap: 7px; }
+    .dot { width: 10px; height: 10px; border-radius: 50%; }
+    .dot-r { background: #FF6058; } .dot-y { background: #FFBD2E; } .dot-g { background: #28C840; }
+    .mockup-url { flex: 1; background: var(--bg); border: 1px solid var(--border); border-radius: 6px; padding: 5px 12px; font-size: 11.5px; color: var(--text3); margin-left: 10px; font-family: monospace; }
+    .mockup-body { padding: 20px; }
+    .mockup-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+    .mockup-title { font-size: 13px; font-weight: 700; color: var(--text); }
+    .mockup-sub { font-size: 11px; color: var(--text3); margin-top: 1px; }
+    .mockup-tag { background: var(--accent-light); color: var(--accent); font-size: 11px; font-weight: 600; padding: 4px 10px; border-radius: 100px; }
+    .kpis { display: grid; grid-template-columns: repeat(4,1fr); gap: 10px; margin-bottom: 14px; }
+    .kpi { background: var(--bg); border: 1px solid var(--border); border-radius: 10px; padding: 12px 14px; }
+    .kpi-label { font-size: 10px; color: var(--text3); font-weight: 500; margin-bottom: 4px; }
+    .kpi-val { font-size: 20px; font-weight: 800; color: var(--text); letter-spacing: -0.5px; }
+    .kpi-delta { font-size: 10px; font-weight: 600; margin-top: 3px; }
+    .up { color: #3D6B4F; } .down { color: #C0392B; }
+    .charts-row { display: grid; grid-template-columns: 3fr 2fr; gap: 10px; }
+    .chart-box { background: var(--bg); border: 1px solid var(--border); border-radius: 10px; padding: 14px; }
+    .chart-box-title { font-size: 11px; font-weight: 600; color: var(--text); margin-bottom: 12px; }
+    .bar-chart { display: flex; align-items: flex-end; gap: 5px; height: 56px; }
+    .bar-col { flex: 1; border-radius: 4px 4px 0 0; background: var(--accent); }
+    .chat-preview { display: flex; flex-direction: column; gap: 7px; }
+    .chat-bubble { font-size: 10.5px; line-height: 1.45; padding: 8px 11px; border-radius: 10px; max-width: 90%; }
+    .chat-user { background: var(--text); color: var(--bg); align-self: flex-end; border-radius: 10px 10px 2px 10px; }
+    .chat-ai { background: var(--card); color: var(--text); border: 1px solid var(--border); align-self: flex-start; border-radius: 10px 10px 10px 2px; }
+    .chat-ai strong { color: var(--accent); }
+
+    /* SECTIONS */
+    .section { padding: 100px 24px; }
+    .section-inner { max-width: 960px; margin: 0 auto; }
+    .eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--accent); margin-bottom: 14px; }
+    h2 { font-size: clamp(28px, 4vw, 44px); font-weight: 800; letter-spacing: -1.5px; line-height: 1.1; color: var(--text); margin-bottom: 16px; }
+    .section-sub { font-size: 17px; color: var(--text2); max-width: 480px; line-height: 1.75; margin-bottom: 56px; }
+
+    /* FEATURES GRID */
+    .features-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; }
+    .feature-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px; transition: box-shadow 0.25s, transform 0.25s; }
+    .feature-card:hover { box-shadow: 0 8px 40px rgba(0,0,0,0.08); transform: translateY(-2px); }
+    .feature-icon { width: 40px; height: 40px; background: var(--accent-light); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 20px; margin-bottom: 16px; }
+    .feature-card h3 { font-size: 16px; font-weight: 700; color: var(--text); margin-bottom: 8px; letter-spacing: -0.2px; }
+    .feature-card p { font-size: 14px; color: var(--text2); line-height: 1.65; }
+
+    /* HOW IT WORKS */
+    .steps { display: flex; flex-direction: column; gap: 0; }
+    .step { display: grid; grid-template-columns: 80px 1fr; gap: 32px; align-items: start; padding: 40px 0; border-bottom: 1px solid var(--border); }
+    .step:last-child { border-bottom: none; }
+    .step-num { font-size: 48px; font-weight: 900; color: var(--accent-light); letter-spacing: -2px; line-height: 1; }
+    .step h3 { font-size: 20px; font-weight: 700; color: var(--text); margin-bottom: 10px; letter-spacing: -0.3px; }
+    .step p { font-size: 15px; color: var(--text2); line-height: 1.7; }
+
+    /* PRICING */
+    .pricing-section { padding: 100px 24px; background: var(--bg2); }
+    .pricing-card { max-width: 520px; margin: 0 auto; background: var(--card); border: 1px solid var(--border); border-radius: 24px; padding: 48px 40px; box-shadow: 0 4px 60px rgba(0,0,0,0.07); }
+    .pricing-badge { display: inline-flex; align-items: center; gap: 6px; background: var(--accent-light); color: var(--accent); font-size: 11.5px; font-weight: 700; padding: 5px 12px; border-radius: 100px; margin-bottom: 24px; }
+    .pricing-price { font-size: 64px; font-weight: 900; letter-spacing: -3px; color: var(--text); line-height: 1; margin-bottom: 6px; }
+    .pricing-price span { font-size: 26px; font-weight: 600; letter-spacing: -0.5px; vertical-align: top; margin-top: 12px; display: inline-block; color: var(--text2); }
+    .pricing-once { font-size: 13px; color: var(--text3); margin-bottom: 32px; }
+    .pricing-divider { border: none; border-top: 1px solid var(--border); margin: 28px 0; }
+    .pricing-features { list-style: none; display: flex; flex-direction: column; gap: 12px; margin-bottom: 32px; }
+    .pricing-features li { display: flex; align-items: flex-start; gap: 10px; font-size: 14px; color: var(--text); line-height: 1.5; }
+    .check { width: 20px; height: 20px; min-width: 20px; background: var(--accent-light); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 10px; color: var(--accent); font-weight: 700; margin-top: 1px; }
+    .pricing-note { font-size: 12px; color: var(--text3); margin-top: 14px; line-height: 1.6; text-align: center; }
+    .pricing-note a { color: var(--accent); text-decoration: none; }
+
+    /* FAQ */
+    .faq { display: flex; flex-direction: column; gap: 0; max-width: 680px; }
+    .faq-item { padding: 24px 0; border-bottom: 1px solid var(--border); }
+    .faq-item:first-child { border-top: 1px solid var(--border); }
+    .faq-q { font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 10px; }
+    .faq-a { font-size: 14px; color: var(--text2); line-height: 1.7; }
+
+    /* FOOTER */
+    footer { border-top: 1px solid var(--border); padding: 32px 24px; }
+    .footer-inner { max-width: 960px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+    .footer-logo { font-size: 15px; font-weight: 800; color: var(--text); letter-spacing: -0.3px; }
+    .footer-logo em { font-style: normal; color: var(--accent); }
+    .footer-copy { font-size: 12.5px; color: var(--text3); }
+
+    /* FADE IN */
+    .fade-in { transition: opacity 0.6s ease, transform 0.6s ease; }
+    .js-ready .fade-in { opacity: 0; transform: translateY(20px); }
+    .js-ready .fade-in.visible { opacity: 1; transform: none; }
+
+    @media (max-width: 768px) {
+      nav { width: calc(100% - 32px); padding: 10px 10px 10px 20px; }
+      .nav-links li:not(:last-child) { display: none; }
+      h1 { letter-spacing: -2px; }
+      .features-grid { grid-template-columns: 1fr; }
+      .step { grid-template-columns: 1fr; gap: 12px; }
+      .step-num { font-size: 36px; }
+      .kpis { grid-template-columns: repeat(2,1fr); }
+      .charts-row { grid-template-columns: 1fr; }
+      .footer-inner { flex-direction: column; gap: 12px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="/"><em>Simplifying</em>Data</a>
+  <ul class="nav-links">
+    <li><a href="/#products">All tools</a></li>
+    <li><a href="https://bizanalyst-demo.vercel.app" target="_blank">Live demo</a></li>
+    <li><a href="https://simplifyingdata.lemonsqueezy.com/checkout/buy/fd945053-a0c8-45d3-b677-eab98150bf54" class="nav-cta btn" target="_blank">Get BizAnalyst AI →</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="product-eyebrow">
+    <span class="eyebrow-icon">📊</span>
+    BizAnalyst AI
+  </div>
+  <h1>Your sales data,<br /><span class="green">finally making sense</span></h1>
+  <p class="hero-sub">Upload your Excel file. Get instant KPIs, trend charts, and an AI that answers questions about your business in plain English.</p>
+  <div class="hero-actions">
+    <a href="https://simplifyingdata.lemonsqueezy.com/checkout/buy/fd945053-a0c8-45d3-b677-eab98150bf54" class="btn btn-dark" target="_blank">Get BizAnalyst AI — $199 →</a>
+    <a href="https://bizanalyst-demo.vercel.app" class="btn btn-ghost" target="_blank">See live demo</a>
+  </div>
+  <p class="price-note">One-time payment · Lifetime access · No subscription</p>
+</div>
+
+<!-- MOCKUP -->
+<div class="mockup-wrap">
+  <div class="mockup">
+    <div class="mockup-bar">
+      <div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div>
+      <div class="mockup-url">bizanalyst.vercel.app</div>
+    </div>
+    <div class="mockup-body">
+      <div class="mockup-header">
+        <div>
+          <div class="mockup-title">Sales Dashboard</div>
+          <div class="mockup-sub">Last updated: Jun 2026 · 1,340 rows</div>
+        </div>
+        <div class="mockup-tag">AI ready ✓</div>
+      </div>
+      <div class="kpis">
+        <div class="kpi"><div class="kpi-label">Total Revenue</div><div class="kpi-val">$84.2K</div><div class="kpi-delta up">↑ 12% vs last month</div></div>
+        <div class="kpi"><div class="kpi-label">Units Sold</div><div class="kpi-val">1,340</div><div class="kpi-delta up">↑ 8%</div></div>
+        <div class="kpi"><div class="kpi-label">Avg Order</div><div class="kpi-val">$62.8</div><div class="kpi-delta up">↑ 4%</div></div>
+        <div class="kpi"><div class="kpi-label">Return Rate</div><div class="kpi-val">2.1%</div><div class="kpi-delta down">↓ 0.4%</div></div>
+      </div>
+      <div class="charts-row">
+        <div class="chart-box">
+          <div class="chart-box-title">Revenue trend — 12 months</div>
+          <div class="bar-chart">
+            <div class="bar-col" style="height:42%;opacity:.35"></div><div class="bar-col" style="height:51%;opacity:.4"></div>
+            <div class="bar-col" style="height:46%;opacity:.4"></div><div class="bar-col" style="height:60%;opacity:.5"></div>
+            <div class="bar-col" style="height:55%;opacity:.5"></div><div class="bar-col" style="height:68%;opacity:.6"></div>
+            <div class="bar-col" style="height:63%;opacity:.65"></div><div class="bar-col" style="height:75%;opacity:.7"></div>
+            <div class="bar-col" style="height:72%;opacity:.75"></div><div class="bar-col" style="height:85%;opacity:.85"></div>
+            <div class="bar-col" style="height:79%;opacity:.9"></div><div class="bar-col" style="height:100%;opacity:1"></div>
+          </div>
+        </div>
+        <div class="chart-box">
+          <div class="chart-box-title">Ask AI</div>
+          <div class="chat-preview">
+            <div class="chat-bubble chat-user">What's my best product this month?</div>
+            <div class="chat-bubble chat-ai"><strong>Product A</strong> led with $28K — up 19% vs May. Online channel drove 72% of sales.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FEATURES -->
+<section class="section" id="features">
+  <div class="section-inner">
+    <div class="eyebrow fade-in">What you get</div>
+    <h2 class="fade-in">Everything your sales data needs.</h2>
+    <p class="section-sub fade-in">Built for small businesses who run on Excel — no BI team, no setup, no complexity.</p>
+
+    <div class="features-grid">
+      <div class="feature-card fade-in">
+        <div class="feature-icon">📈</div>
+        <h3>Instant KPIs</h3>
+        <p>Revenue, units sold, average order value, return rate — automatically calculated and updated every time you upload.</p>
+      </div>
+      <div class="feature-card fade-in">
+        <div class="feature-icon">🗂</div>
+        <h3>Channel & product breakdown</h3>
+        <p>See which products and sales channels are driving growth — and which ones are dragging it down.</p>
+      </div>
+      <div class="feature-card fade-in">
+        <div class="feature-icon">📦</div>
+        <h3>Inventory tracking</h3>
+        <p>Keep an eye on stock levels and movement across your product range — right alongside your sales data.</p>
+      </div>
+      <div class="feature-card fade-in">
+        <div class="feature-icon">💬</div>
+        <h3>AI chat assistant</h3>
+        <p>Ask anything about your data in plain English. "Who's my top customer this quarter?" Get the answer in seconds.</p>
+      </div>
+      <div class="feature-card fade-in">
+        <div class="feature-icon">📅</div>
+        <h3>Trend charts</h3>
+        <p>12-month revenue trend, month-over-month comparisons, seasonal patterns — visualised automatically from your data.</p>
+      </div>
+      <div class="feature-card fade-in">
+        <div class="feature-icon">🔒</div>
+        <h3>Private & secure</h3>
+        <p>Your data is stored privately per account. No one else ever sees your numbers. No shared databases.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="section" style="background:var(--bg2);">
+  <div class="section-inner">
+    <div class="eyebrow fade-in">How it works</div>
+    <h2 class="fade-in">Up and running in minutes.</h2>
+    <p class="section-sub fade-in">No onboarding calls. No integrations. No IT tickets.</p>
+
+    <div class="steps">
+      <div class="step fade-in">
+        <div class="step-num">01</div>
+        <div>
+          <h3>Buy once, get instant access</h3>
+          <p>Complete the one-time purchase. You'll receive an email with a link to set your password — no waiting, no approval process. Access is instant.</p>
+        </div>
+      </div>
+      <div class="step fade-in">
+        <div class="step-num">02</div>
+        <div>
+          <h3>Upload your Excel file</h3>
+          <p>Drop in the same spreadsheet you already use — sales data, inventory, returns. We handle it as-is. No reformatting, no special columns required.</p>
+        </div>
+      </div>
+      <div class="step fade-in">
+        <div class="step-num">03</div>
+        <div>
+          <h3>Your dashboard is ready</h3>
+          <p>KPIs, charts, and trend analysis appear automatically. Upload a new file anytime to refresh your data. Then ask AI anything you want to know.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing-section" id="pricing">
+  <div class="section-inner">
+    <div class="eyebrow fade-in" style="text-align:center;margin-bottom:40px;">Pricing</div>
+    <div class="pricing-card fade-in">
+      <div class="pricing-badge">📊 BizAnalyst AI</div>
+      <div class="pricing-price"><span>$</span>199</div>
+      <div class="pricing-once">One-time payment · Lifetime access</div>
+      <hr class="pricing-divider" />
+      <ul class="pricing-features">
+        <li><span class="check">✓</span>Full sales dashboard with KPIs & charts</li>
+        <li><span class="check">✓</span>Channel & product performance breakdown</li>
+        <li><span class="check">✓</span>Inventory tracking</li>
+        <li><span class="check">✓</span>AI chat assistant (plain English questions)</li>
+        <li><span class="check">✓</span>Unlimited Excel uploads</li>
+        <li><span class="check">✓</span>Lifetime access — no subscription</li>
+        <li><span class="check">✓</span>Private, secure storage</li>
+      </ul>
+      <a href="https://simplifyingdata.lemonsqueezy.com/checkout/buy/fd945053-a0c8-45d3-b677-eab98150bf54" class="btn btn-dark" style="width:100%;justify-content:center;font-size:15px;" target="_blank">Get BizAnalyst AI →</a>
+      <p class="pricing-note">AI chat requires a free <a href="https://console.anthropic.com" target="_blank">Anthropic API key</a> (~$2/mo billed by Anthropic). Everything else works without it.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section">
+  <div class="section-inner">
+    <div class="eyebrow fade-in">FAQ</div>
+    <h2 class="fade-in">Common questions</h2>
+    <div class="faq fade-in">
+      <div class="faq-item">
+        <div class="faq-q">What format does my Excel file need to be in?</div>
+        <div class="faq-a">Any standard .xlsx file works. We parse it as-is — no special column names or formatting required. Sales data, inventory, returns — upload whatever you have.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Do I need an Anthropic API key?</div>
+        <div class="faq-a">Only for the AI chat feature. The dashboard, KPIs, and charts all work without it. If you want AI answers, you'll need a free Anthropic account — usage costs roughly $2/month billed directly by Anthropic.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Is this really a one-time payment?</div>
+        <div class="faq-a">Yes. You pay once and get lifetime access. No monthly fees, no renewals, no surprise charges.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Who can see my data?</div>
+        <div class="faq-a">Only you. Each account has its own private storage. Your data is never shared, pooled, or used for training.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Can I try it before buying?</div>
+        <div class="faq-a">Yes — there's a <a href="https://bizanalyst-demo.vercel.app" target="_blank" style="color:var(--accent);text-decoration:none;">live demo</a> you can explore with sample data before purchasing.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo"><em>Simplifying</em>Data</div>
+    <div class="footer-copy">© 2026 SimplifyingData · <a href="/" style="color:var(--text3);text-decoration:none;">All tools</a></div>
+  </div>
+</footer>
+
+<script>
+  document.documentElement.classList.add('js-ready');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        const siblings = e.target.parentElement.querySelectorAll('.fade-in');
+        siblings.forEach((s,i) => { s.style.transitionDelay = `${i * 60}ms`; });
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

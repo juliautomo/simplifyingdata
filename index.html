@@ -1044,7 +1044,10 @@
           <span style="font-size:13px;color:var(--text3);font-weight:500;">one-time</span>
         </div>
         <a href="https://simplifyingdata.lemonsqueezy.com/checkout/buy/fd945053-a0c8-45d3-b677-eab98150bf54" id="buyBtn" class="btn btn-dark" style="width:100%;justify-content:center;margin-bottom:10px;" target="_blank">Get BizAnalyst AI →</a>
-        <a href="https://bizanalyst-demo.vercel.app/" target="_blank" class="prod-link" style="font-size:12.5px;">See a live demo →</a>
+        <div style="display:flex;gap:16px;align-items:center;">
+          <a href="/bizanalyst" class="prod-link" style="font-size:12.5px;">Learn more →</a>
+          <a href="https://bizanalyst-demo.vercel.app/" target="_blank" class="prod-link" style="font-size:12.5px;color:var(--text3);">Live demo →</a>
+        </div>
         <p style="font-size:11px;color:var(--text3);margin-top:10px;line-height:1.6;">AI chat requires a free <a href="https://console.anthropic.com" target="_blank" style="color:var(--accent);text-decoration:none;">Anthropic API key</a> — ~$2/mo billed by Anthropic.</p>
       </div>
 
@@ -1065,6 +1068,7 @@
           <span style="font-size:13px;color:var(--text3);font-weight:500;">one-time</span>
         </div>
         <a href="https://simplifyingdata.lemonsqueezy.com/checkout/buy/98f9976e-17e1-4c42-bca2-74fdc5c43dec" class="btn btn-dark" style="width:100%;justify-content:center;margin-bottom:10px;" target="_blank">Get Leads Generator →</a>
+        <a href="/leads-generator" class="prod-link" style="font-size:12.5px;">Learn more →</a>
       </div>
 
       <div class="prod-card dark-card fade-in">
@@ -1199,4 +1203,13 @@
     } else {
       msg.textContent = `✓ You're on the list! We'll reach out at ${email}`;
       msg.style.color = 'var(--accent)';
-      document.getElementById('emailIn
+      document.getElementById('emailInput').value = '';
+    }
+
+    btn.disabled = false;
+    btn.textContent = 'Notify me →';
+  }
+</script>
+
+</body>
+</html>

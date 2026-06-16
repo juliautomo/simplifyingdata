@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Leads Generator — Find & Qualify Leads Automatically</title>
+  <meta name="description" content="Define your target customer, let AI find qualified leads, export a ready-to-use list. No manual research needed." />
+  <link rel="canonical" href="https://simplifyingdata.co/leads-generator" />
+  <meta property="og:title" content="Leads Generator — Find & Qualify Leads Automatically" />
+  <meta property="og:description" content="Define your target customer, let AI find qualified leads, export a ready-to-use list." />
+  <meta property="og:url" content="https://simplifyingdata.co/leads-generator" />
+  <meta property="og:type" content="website" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #F7F6F2;
+      --bg2: #EFEDE8;
+      --text: #16150F;
+      --text2: #6B6860;
+      --text3: #9E9C97;
+      --accent: #3D6B4F;
+      --accent2: #5A9E73;
+      --accent-light: #E8F2EB;
+      --border: #E2E0DA;
+      --white: #FFFFFF;
+      --card: #FFFFFF;
+      --radius: 16px;
+    }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 16px; left: 50%; transform: translateX(-50%);
+      z-index: 200; width: calc(100% - 48px); max-width: 1000px;
+      background: rgba(247,246,242,0.82); backdrop-filter: blur(20px);
+      border: 1px solid var(--border); border-radius: 100px;
+      padding: 10px 10px 10px 28px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo { font-size: 15px; font-weight: 800; color: var(--text); text-decoration: none; letter-spacing: -0.4px; }
+    .nav-logo em { font-style: normal; color: var(--accent); }
+    .nav-links { display: flex; align-items: center; gap: 4px; list-style: none; }
+    .nav-links a { font-size: 13.5px; font-weight: 500; color: var(--text2); text-decoration: none; padding: 7px 14px; border-radius: 100px; transition: color 0.2s, background 0.2s; }
+    .nav-links a:hover { color: var(--text); background: var(--bg2); }
+    .nav-cta { background: var(--text) !important; color: var(--bg) !important; font-weight: 600 !important; padding: 9px 20px !important; }
+    .nav-cta:hover { opacity: 0.85 !important; }
+
+    /* HERO */
+    .hero { padding: 140px 24px 80px; text-align: center; position: relative; }
+    .hero::before {
+      content: ''; position: absolute; top: 80px; left: 50%; transform: translateX(-50%);
+      width: 600px; height: 400px;
+      background: radial-gradient(ellipse at center, rgba(90,158,115,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .product-eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--card); border: 1px solid var(--border);
+      color: var(--text2); font-size: 12.5px; font-weight: 600;
+      padding: 6px 14px 6px 8px; border-radius: 100px; margin-bottom: 32px;
+    }
+    .eyebrow-icon { width: 24px; height: 24px; background: var(--accent-light); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; }
+
+    h1 { font-size: clamp(38px, 6vw, 72px); font-weight: 900; line-height: 1.05; letter-spacing: -3px; color: var(--text); margin-bottom: 20px; max-width: 760px; margin-left: auto; margin-right: auto; }
+    h1 .green { color: var(--accent); }
+    .hero-sub { font-size: 18px; color: var(--text2); line-height: 1.75; max-width: 500px; margin: 0 auto 40px; }
+    .hero-actions { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-bottom: 64px; }
+
+    .btn { display: inline-flex; align-items: center; gap: 6px; font-family: inherit; font-size: 14.5px; font-weight: 600; padding: 13px 24px; border-radius: 100px; border: none; cursor: pointer; text-decoration: none; transition: all 0.2s; }
+    .btn-dark { background: var(--text); color: var(--bg); }
+    .btn-dark:hover { opacity: 0.85; transform: translateY(-1px); }
+    .btn-ghost { background: transparent; color: var(--text2); border: 1.5px solid var(--border); }
+    .btn-ghost:hover { border-color: var(--text2); color: var(--text); transform: translateY(-1px); }
+    .price-note { font-size: 13px; color: var(--text3); margin-top: 12px; }
+
+    /* LEAD PREVIEW MOCKUP */
+    .mockup-wrap { max-width: 800px; margin: 0 auto; padding: 0 24px; }
+    .leads-mockup { background: var(--card); border: 1px solid var(--border); border-radius: 20px; overflow: hidden; box-shadow: 0 2px 0 #E2E0DA, 0 8px 60px rgba(0,0,0,0.1), 0 32px 80px rgba(0,0,0,0.06); }
+    .mockup-bar { background: var(--bg2); border-bottom: 1px solid var(--border); padding: 11px 18px; display: flex; align-items: center; gap: 7px; }
+    .dot { width: 10px; height: 10px; border-radius: 50%; }
+    .dot-r { background: #FF6058; } .dot-y { background: #FFBD2E; } .dot-g { background: #28C840; }
+    .mockup-url { flex: 1; background: var(--bg); border: 1px solid var(--border); border-radius: 6px; padding: 5px 12px; font-size: 11.5px; color: var(--text3); margin-left: 10px; font-family: monospace; }
+    .leads-body { padding: 20px; }
+    .leads-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+    .leads-title { font-size: 13px; font-weight: 700; color: var(--text); }
+    .leads-sub { font-size: 11px; color: var(--text3); margin-top: 1px; }
+    .leads-badge { background: var(--accent-light); color: var(--accent); font-size: 11px; font-weight: 600; padding: 4px 10px; border-radius: 100px; }
+    .leads-table { width: 100%; border-collapse: collapse; }
+    .leads-table th { font-size: 10.5px; font-weight: 600; color: var(--text3); text-transform: uppercase; letter-spacing: 0.5px; padding: 8px 12px; text-align: left; border-bottom: 1px solid var(--border); background: var(--bg); }
+    .leads-table td { font-size: 12px; color: var(--text); padding: 10px 12px; border-bottom: 1px solid var(--border); }
+    .leads-table tr:last-child td { border-bottom: none; }
+    .score { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; font-weight: 700; }
+    .score-high { color: var(--accent); }
+    .score-med { color: #B8860B; }
+    .tag { display: inline-block; background: var(--bg2); border: 1px solid var(--border); border-radius: 100px; font-size: 10px; font-weight: 500; padding: 2px 8px; color: var(--text2); }
+
+    /* SECTIONS */
+    .section { padding: 100px 24px; }
+    .section-inner { max-width: 960px; margin: 0 auto; }
+    .eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--accent); margin-bottom: 14px; }
+    h2 { font-size: clamp(28px, 4vw, 44px); font-weight: 800; letter-spacing: -1.5px; line-height: 1.1; color: var(--text); margin-bottom: 16px; }
+    .section-sub { font-size: 17px; color: var(--text2); max-width: 480px; line-height: 1.75; margin-bottom: 56px; }
+
+    /* FEATURES */
+    .features-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; }
+    .feature-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px; transition: box-shadow 0.25s, transform 0.25s; }
+    .feature-card:hover { box-shadow: 0 8px 40px rgba(0,0,0,0.08); transform: translateY(-2px); }
+    .feature-icon { width: 40px; height: 40px; background: var(--accent-light); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 20px; margin-bottom: 16px; }
+    .feature-card h3 { font-size: 16px; font-weight: 700; color: var(--text); margin-bottom: 8px; letter-spacing: -0.2px; }
+    .feature-card p { font-size: 14px; color: var(--text2); line-height: 1.65; }
+
+    /* HOW IT WORKS */
+    .steps { display: flex; flex-direction: column; gap: 0; }
+    .step { display: grid; grid-template-columns: 80px 1fr; gap: 32px; align-items: start; padding: 40px 0; border-bottom: 1px solid var(--border); }
+    .step:last-child { border-bottom: none; }
+    .step-num { font-size: 48px; font-weight: 900; color: var(--accent-light); letter-spacing: -2px; line-height: 1; }
+    .step h3 { font-size: 20px; font-weight: 700; color: var(--text); margin-bottom: 10px; letter-spacing: -0.3px; }
+    .step p { font-size: 15px; color: var(--text2); line-height: 1.7; }
+
+    /* PRICING */
+    .pricing-section { padding: 100px 24px; background: var(--bg2); }
+    .pricing-card { max-width: 520px; margin: 0 auto; background: var(--card); border: 1px solid var(--border); border-radius: 24px; padding: 48px 40px; box-shadow: 0 4px 60px rgba(0,0,0,0.07); }
+    .pricing-badge { display: inline-flex; align-items: center; gap: 6px; background: var(--accent-light); color: var(--accent); font-size: 11.5px; font-weight: 700; padding: 5px 12px; border-radius: 100px; margin-bottom: 24px; }
+    .pricing-price { font-size: 64px; font-weight: 900; letter-spacing: -3px; color: var(--text); line-height: 1; margin-bottom: 6px; }
+    .pricing-price span { font-size: 26px; font-weight: 600; letter-spacing: -0.5px; vertical-align: top; margin-top: 12px; display: inline-block; color: var(--text2); }
+    .pricing-once { font-size: 13px; color: var(--text3); margin-bottom: 32px; }
+    .pricing-divider { border: none; border-top: 1px solid var(--border); margin: 28px 0; }
+    .pricing-features { list-style: none; display: flex; flex-direction: column; gap: 12px; margin-bottom: 32px; }
+    .pricing-features li { display: flex; align-items: flex-start; gap: 10px; font-size: 14px; color: var(--text); line-height: 1.5; }
+    .check { width: 20px; height: 20px; min-width: 20px; background: var(--accent-light); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 10px; color: var(--accent); font-weight: 700; margin-top: 1px; }
+    .pricing-note { font-size: 12px; color: var(--text3); margin-top: 14px; line-height: 1.6; text-align: center; }
+
+    /* FAQ */
+    .faq { display: flex; flex-direction: column; gap: 0; max-width: 680px; }
+    .faq-item { padding: 24px 0; border-bottom: 1px solid var(--border); }
+    .faq-item:first-child { border-top: 1px solid var(--border); }
+    .faq-q { font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 10px; }
+    .faq-a { font-size: 14px; color: var(--text2); line-height: 1.7; }
+
+    /* FOOTER */
+    footer { border-top: 1px solid var(--border); padding: 32px 24px; }
+    .footer-inner { max-width: 960px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+    .footer-logo { font-size: 15px; font-weight: 800; color: var(--text); letter-spacing: -0.3px; }
+    .footer-logo em { font-style: normal; color: var(--accent); }
+    .footer-copy { font-size: 12.5px; color: var(--text3); }
+
+    /* FADE IN */
+    .fade-in { transition: opacity 0.6s ease, transform 0.6s ease; }
+    .js-ready .fade-in { opacity: 0; transform: translateY(20px); }
+    .js-ready .fade-in.visible { opacity: 1; transform: none; }
+
+    @media (max-width: 768px) {
+      nav { width: calc(100% - 32px); padding: 10px 10px 10px 20px; }
+      .nav-links li:not(:last-child) { display: none; }
+      h1 { letter-spacing: -2px; }
+      .features-grid { grid-template-columns: 1fr; }
+      .step { grid-template-columns: 1fr; gap: 12px; }
+      .step-num { font-size: 36px; }
+      .leads-table th:nth-child(3), .leads-table td:nth-child(3) { display: none; }
+      .footer-inner { flex-direction: column; gap: 12px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="/"><em>Simplifying</em>Data</a>
+  <ul class="nav-links">
+    <li><a href="/#products">All tools</a></li>
+    <li><a href="#how">How it works</a></li>
+    <li><a href="https://simplifyingdata.lemonsqueezy.com/checkout/buy/98f9976e-17e1-4c42-bca2-74fdc5c43dec" class="nav-cta btn" target="_blank">Get Leads Generator →</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="product-eyebrow">
+    <span class="eyebrow-icon">🎯</span>
+    Leads Generator
+  </div>
+  <h1>Stop researching leads.<br /><span class="green">Start closing them.</span></h1>
+  <p class="hero-sub">Define your target customer, let AI find and qualify leads, export a ready-to-use list. No manual research, no scraping tools, no wasted hours.</p>
+  <div class="hero-actions">
+    <a href="https://simplifyingdata.lemonsqueezy.com/checkout/buy/98f9976e-17e1-4c42-bca2-74fdc5c43dec" class="btn btn-dark" target="_blank">Get Leads Generator — $199 →</a>
+    <a href="#how" class="btn btn-ghost">See how it works</a>
+  </div>
+  <p class="price-note">One-time payment · Lifetime access · No subscription</p>
+</div>
+
+<!-- LEADS MOCKUP -->
+<div class="mockup-wrap">
+  <div class="leads-mockup">
+    <div class="mockup-bar">
+      <div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div>
+      <div class="mockup-url">simplifying-leads.vercel.app</div>
+    </div>
+    <div class="leads-body">
+      <div class="leads-header">
+        <div>
+          <div class="leads-title">Lead Results — SaaS companies, 10–50 employees, US</div>
+          <div class="leads-sub">Generated Jun 2026 · 42 leads found</div>
+        </div>
+        <div class="leads-badge">✓ Export ready</div>
+      </div>
+      <table class="leads-table">
+        <thead>
+          <tr>
+            <th>Company</th>
+            <th>Contact</th>
+            <th>Industry</th>
+            <th>Size</th>
+            <th>Score</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Acme Corp</strong><br /><span style="font-size:10px;color:var(--text3);">acmecorp.com</span></td>
+            <td>Sarah Lee<br /><span style="font-size:10px;color:var(--text3);">VP Sales</span></td>
+            <td><span class="tag">SaaS</span></td>
+            <td>32</td>
+            <td><span class="score score-high">● 94</span></td>
+          </tr>
+          <tr>
+            <td><strong>Brightpath</strong><br /><span style="font-size:10px;color:var(--text3);">brightpath.io</span></td>
+            <td>James Wu<br /><span style="font-size:10px;color:var(--text3);">CEO</span></td>
+            <td><span class="tag">SaaS</span></td>
+            <td>18</td>
+            <td><span class="score score-high">● 88</span></td>
+          </tr>
+          <tr>
+            <td><strong>Loopline</strong><br /><span style="font-size:10px;color:var(--text3);">loopline.co</span></td>
+            <td>Maria Santos<br /><span style="font-size:10px;color:var(--text3);">Head of Growth</span></td>
+            <td><span class="tag">SaaS</span></td>
+            <td>45</td>
+            <td><span class="score score-med">● 76</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- FEATURES -->
+<section class="section" id="features">
+  <div class="section-inner">
+    <div class="eyebrow fade-in">What you get</div>
+    <h2 class="fade-in">Qualified leads, ready to contact.</h2>
+    <p class="section-sub fade-in">No more hours on LinkedIn. No more cold list purchasing. Just targeted leads that match your criteria.</p>
+
+    <div class="features-grid">
+      <div class="feature-card fade-in">
+        <div class="feature-icon">🤖</div>
+        <h3>AI-powered discovery</h3>
+        <p>Describe your ideal customer and AI finds matching companies and contacts — no manual searching required.</p>
+      </div>
+      <div class="feature-card fade-in">
+        <div class="feature-icon">🎛</div>
+        <h3>Precise filters</h3>
+        <p>Filter by industry, company size, location, job title, and more. Get exactly the leads you want, not a generic list.</p>
+      </div>
+      <div class="feature-card fade-in">
+        <div class="feature-icon">👤</div>
+        <h3>Contact details included</h3>
+        <p>Names, titles, company info — everything you need to reach out, already included in each lead.</p>
+      </div>
+      <div class="feature-card fade-in">
+        <div class="feature-icon">📊</div>
+        <h3>Lead scoring</h3>
+        <p>Each lead gets a fit score based on how closely they match your criteria. Focus your time on the highest-value prospects.</p>
+      </div>
+      <div class="feature-card fade-in">
+        <div class="feature-icon">📥</div>
+        <h3>Export-ready CSV</h3>
+        <p>Download your lead list as a CSV instantly. Drop it straight into your CRM, email tool, or outreach sequence.</p>
+      </div>
+      <div class="feature-card fade-in">
+        <div class="feature-icon">♾️</div>
+        <h3>Run it as many times as you want</h3>
+        <p>Generate new lists whenever you need them. Target a new segment, a new region, a new campaign — no limits.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="section" style="background:var(--bg2);" id="how">
+  <div class="section-inner">
+    <div class="eyebrow fade-in">How it works</div>
+    <h2 class="fade-in">From criteria to CSV in minutes.</h2>
+    <p class="section-sub fade-in">No training, no setup, no manual work.</p>
+
+    <div class="steps">
+      <div class="step fade-in">
+        <div class="step-num">01</div>
+        <div>
+          <h3>Buy once, get instant access</h3>
+          <p>Complete the one-time purchase. You'll receive an email to set your password — access is immediate. No waiting, no approval.</p>
+        </div>
+      </div>
+      <div class="step fade-in">
+        <div class="step-num">02</div>
+        <div>
+          <h3>Define your target customer</h3>
+          <p>Tell the tool who you're looking for — industry, company size, location, job titles. The more specific you are, the better the results.</p>
+        </div>
+      </div>
+      <div class="step fade-in">
+        <div class="step-num">03</div>
+        <div>
+          <h3>AI generates your lead list</h3>
+          <p>AI finds matching companies and contacts, scores each lead for fit, and surfaces the best ones at the top.</p>
+        </div>
+      </div>
+      <div class="step fade-in">
+        <div class="step-num">04</div>
+        <div>
+          <h3>Export and start reaching out</h3>
+          <p>Download your list as a CSV and import it into your CRM or outreach tool. Your leads are ready to contact.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing-section" id="pricing">
+  <div class="section-inner">
+    <div class="eyebrow fade-in" style="text-align:center;margin-bottom:40px;">Pricing</div>
+    <div class="pricing-card fade-in">
+      <div class="pricing-badge">🎯 Leads Generator</div>
+      <div class="pricing-price"><span>$</span>199</div>
+      <div class="pricing-once">One-time payment · Lifetime access</div>
+      <hr class="pricing-divider" />
+      <ul class="pricing-features">
+        <li><span class="check">✓</span>AI-powered lead discovery</li>
+        <li><span class="check">✓</span>Filter by industry, size, location & title</li>
+        <li><span class="check">✓</span>Contact details for every lead</li>
+        <li><span class="check">✓</span>Lead fit scoring</li>
+        <li><span class="check">✓</span>Export-ready CSV output</li>
+        <li><span class="check">✓</span>Unlimited searches</li>
+        <li><span class="check">✓</span>Lifetime access — no subscription</li>
+      </ul>
+      <a href="https://simplifyingdata.lemonsqueezy.com/checkout/buy/98f9976e-17e1-4c42-bca2-74fdc5c43dec" class="btn btn-dark" style="width:100%;justify-content:center;font-size:15px;" target="_blank">Get Leads Generator →</a>
+      <p class="pricing-note">Payment processed securely by Lemon Squeezy. 30-day refund policy.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section">
+  <div class="section-inner">
+    <div class="eyebrow fade-in">FAQ</div>
+    <h2 class="fade-in">Common questions</h2>
+    <div class="faq fade-in">
+      <div class="faq-item">
+        <div class="faq-q">How does the AI find leads?</div>
+        <div class="faq-a">You describe your target customer — industry, size, location, job titles — and the AI searches for matching companies and contacts. It scores each result based on how well it fits your criteria.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">What information is included for each lead?</div>
+        <div class="faq-a">Company name, website, industry, size, key contact name and title, and a fit score. Everything you need to start outreach.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Can I run multiple searches?</div>
+        <div class="faq-a">Yes — run as many searches as you want. Target different segments, different regions, different campaigns. No limits.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Is this really a one-time payment?</div>
+        <div class="faq-a">Yes. Pay once, use it forever. No monthly fees, no renewals.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">What format is the export?</div>
+        <div class="faq-a">CSV — compatible with HubSpot, Salesforce, Mailchimp, Apollo, and any other CRM or outreach tool you use.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo"><em>Simplifying</em>Data</div>
+    <div class="footer-copy">© 2026 SimplifyingData · <a href="/" style="color:var(--text3);text-decoration:none;">All tools</a></div>
+  </div>
+</footer>
+
+<script>
+  document.documentElement.classList.add('js-ready');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        const siblings = e.target.parentElement.querySelectorAll('.fade-in');
+        siblings.forEach((s,i) => { s.style.transitionDelay = `${i * 60}ms`; });
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
