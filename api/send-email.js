@@ -38,7 +38,7 @@ export default async function handler(req, res) {
     return res.status(401).json({ error: 'Unauthorized' });
   }
 
-  const { product, email, name, link, type = 'welcome' } = req.body;
+  const { product, email, name, link, billing_url, type = 'welcome' } = req.body;
 
   if (!product || !email || !link) {
     return res.status(400).json({ error: 'Missing required fields: product, email, link' });
@@ -56,7 +56,7 @@ export default async function handler(req, res) {
 
   const firstName = (name || '').split(' ')[0] || 'there';
   const subject = `You're in — set your password for ${brand.name}`;
-  const html = buildWelcomeEmail(brand, firstName, link);
+  const html = buildWelcomeEmail(brand, firstName, link, billing_url);
 
   const r = await fetch('https://api.resend.com/emails', {
     method: 'POST',
@@ -78,7 +78,7 @@ export default async function handler(req, res) {
   return res.status(200).json({ success: true, id: result.id });
 }
 
-function buildWelcomeEmail(brand, firstName, link) {
+function buildWelcomeEmail(brand, firstName, link, billing_url) {
   return `<!DOCTYPE html>
 <html>
 <head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>
@@ -120,6 +120,10 @@ function buildWelcomeEmail(brand, firstName, link) {
             Log in anytime at <a href="${brand.dashboardUrl}" style="color:#1a1a1a;text-decoration:underline;">${brand.dashboardUrl.replace('https://', '')}</a>.
             If you didn't make this purchase, you can safely ignore this email.
           </p>
+
+          ${billing_url ? `<p style="margin:16px 0 0;font-size:14px;color:#6b7280;">
+            Manage your subscription anytime at <a href="${billing_url}" style="color:#1a1a1a;text-decoration:underline;">your billing portal</a>.
+          </p>` : ''}
         </td></tr>
 
         <tr><td style="padding:20px 40px;text-align:center;">
