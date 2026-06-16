@@ -80,33 +80,12 @@
     .btn-ghost:hover { border-color: rgba(255,255,255,0.5); color: #F7F6F2; transform: translateY(-1px); }
     .price-note { font-size: 13px; color: rgba(247,246,242,0.35); margin-top: 12px; }
 
-    /* LEAD PREVIEW MOCKUP */
-    .mockup-wrap { max-width: 800px; margin: 0 auto; padding: 0 24px; }
-    .leads-mockup { background: var(--card); border: 1px solid var(--border); border-radius: 20px; overflow: hidden; box-shadow: 0 2px 0 #E2E0DA, 0 8px 60px rgba(0,0,0,0.1), 0 32px 80px rgba(0,0,0,0.06); }
-    .mockup-bar { background: var(--bg2); border-bottom: 1px solid var(--border); padding: 11px 18px; display: flex; align-items: center; gap: 7px; }
-    .dot { width: 10px; height: 10px; border-radius: 50%; }
-    .dot-r { background: #FF6058; } .dot-y { background: #FFBD2E; } .dot-g { background: #28C840; }
-    .mockup-url { flex: 1; background: var(--bg); border: 1px solid var(--border); border-radius: 6px; padding: 5px 12px; font-size: 11.5px; color: var(--text3); margin-left: 10px; font-family: monospace; }
-    .leads-body { padding: 20px; }
-    .leads-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
-    .leads-title { font-size: 13px; font-weight: 700; color: var(--text); }
-    .leads-sub { font-size: 11px; color: var(--text3); margin-top: 1px; }
-    .leads-badge { background: var(--accent-light); color: var(--accent); font-size: 11px; font-weight: 600; padding: 4px 10px; border-radius: 100px; }
-    .leads-table { width: 100%; border-collapse: collapse; }
-    .leads-table th { font-size: 10.5px; font-weight: 600; color: var(--text3); text-transform: uppercase; letter-spacing: 0.5px; padding: 8px 12px; text-align: left; border-bottom: 1px solid var(--border); background: var(--bg); }
-    .leads-table td { font-size: 12px; color: var(--text); padding: 10px 12px; border-bottom: 1px solid var(--border); }
-    .leads-table tr:last-child td { border-bottom: none; }
-    .score { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; font-weight: 700; }
-    .score-high { color: var(--accent); }
-    .score-med { color: #B8860B; }
-    .tag { display: inline-block; background: var(--bg2); border: 1px solid var(--border); border-radius: 100px; font-size: 10px; font-weight: 500; padding: 2px 8px; color: var(--text2); }
-
     /* SECTIONS */
-    .section { padding: 100px 24px; }
+    .section { padding: 72px 24px; }
     .section-inner { max-width: 960px; margin: 0 auto; }
-    .eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--accent); margin-bottom: 14px; }
-    h2 { font-size: clamp(28px, 4vw, 44px); font-weight: 800; letter-spacing: -1.5px; line-height: 1.1; color: var(--text); margin-bottom: 16px; }
-    .section-sub { font-size: 17px; color: var(--text2); max-width: 480px; line-height: 1.75; margin-bottom: 56px; }
+    .eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; }
+    h2 { font-size: clamp(26px, 4vw, 40px); font-weight: 800; letter-spacing: -1.5px; line-height: 1.1; color: var(--text); margin-bottom: 12px; }
+    .section-sub { font-size: 16px; color: var(--text2); max-width: 480px; line-height: 1.7; margin-bottom: 40px; }
 
     /* FEATURES */
     .features-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; }
@@ -117,12 +96,11 @@
     .feature-card p { font-size: 14px; color: var(--text2); line-height: 1.65; }
 
     /* HOW IT WORKS */
-    .steps { display: flex; flex-direction: column; gap: 0; }
-    .step { display: grid; grid-template-columns: 80px 1fr; gap: 32px; align-items: start; padding: 40px 0; border-bottom: 1px solid var(--border); }
-    .step:last-child { border-bottom: none; }
-    .step-num { font-size: 48px; font-weight: 900; color: var(--accent-light); letter-spacing: -2px; line-height: 1; }
-    .step h3 { font-size: 20px; font-weight: 700; color: var(--text); margin-bottom: 10px; letter-spacing: -0.3px; }
-    .step p { font-size: 15px; color: var(--text2); line-height: 1.7; }
+    .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+    .step { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; }
+    .step-num { font-size: 13px; font-weight: 700; color: var(--accent); background: var(--accent-light); width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 14px; }
+    .step h3 { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 8px; letter-spacing: -0.2px; }
+    .step p { font-size: 13.5px; color: var(--text2); line-height: 1.6; }
 
     /* PRICING */
     .pricing-section { padding: 100px 24px; background: var(--bg2); }
@@ -139,10 +117,10 @@
 
     /* FAQ */
     .faq { display: flex; flex-direction: column; gap: 0; max-width: 680px; }
-    .faq-item { padding: 24px 0; border-bottom: 1px solid var(--border); }
+    .faq-item { padding: 14px 0; border-bottom: 1px solid var(--border); }
     .faq-item:first-child { border-top: 1px solid var(--border); }
-    .faq-q { font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 10px; }
-    .faq-a { font-size: 14px; color: var(--text2); line-height: 1.7; }
+    .faq-q { font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 5px; }
+    .faq-a { font-size: 13.5px; color: var(--text2); line-height: 1.6; }
 
     /* FOOTER */
     footer { border-top: 1px solid var(--border); padding: 32px 24px; }
@@ -161,9 +139,7 @@
       .nav-links li:not(:last-child) { display: none; }
       h1 { letter-spacing: -2px; }
       .features-grid { grid-template-columns: 1fr; }
-      .step { grid-template-columns: 1fr; gap: 12px; }
-      .step-num { font-size: 36px; }
-      .leads-table th:nth-child(3), .leads-table td:nth-child(3) { display: none; }
+      .steps { grid-template-columns: repeat(2, 1fr); }
       .footer-inner { flex-direction: column; gap: 12px; text-align: center; }
     }
   </style>
@@ -192,59 +168,6 @@
     <a href="#how" class="btn btn-ghost">See how it works</a>
   </div>
   <p class="price-note">One-time payment · Lifetime access · No subscription</p>
-</div>
-
-<!-- LEADS MOCKUP -->
-<div class="mockup-wrap">
-  <div class="leads-mockup">
-    <div class="mockup-bar">
-      <div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div>
-      <div class="mockup-url">simplifying-leads.vercel.app</div>
-    </div>
-    <div class="leads-body">
-      <div class="leads-header">
-        <div>
-          <div class="leads-title">Lead Results — SaaS companies, 10–50 employees, US</div>
-          <div class="leads-sub">Generated Jun 2026 · 42 leads found</div>
-        </div>
-        <div class="leads-badge">✓ Export ready</div>
-      </div>
-      <table class="leads-table">
-        <thead>
-          <tr>
-            <th>Company</th>
-            <th>Contact</th>
-            <th>Industry</th>
-            <th>Size</th>
-            <th>Score</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><strong>Acme Corp</strong><br /><span style="font-size:10px;color:var(--text3);">acmecorp.com</span></td>
-            <td>Sarah Lee<br /><span style="font-size:10px;color:var(--text3);">VP Sales</span></td>
-            <td><span class="tag">SaaS</span></td>
-            <td>32</td>
-            <td><span class="score score-high">● 94</span></td>
-          </tr>
-          <tr>
-            <td><strong>Brightpath</strong><br /><span style="font-size:10px;color:var(--text3);">brightpath.io</span></td>
-            <td>James Wu<br /><span style="font-size:10px;color:var(--text3);">CEO</span></td>
-            <td><span class="tag">SaaS</span></td>
-            <td>18</td>
-            <td><span class="score score-high">● 88</span></td>
-          </tr>
-          <tr>
-            <td><strong>Loopline</strong><br /><span style="font-size:10px;color:var(--text3);">loopline.co</span></td>
-            <td>Maria Santos<br /><span style="font-size:10px;color:var(--text3);">Head of Growth</span></td>
-            <td><span class="tag">SaaS</span></td>
-            <td>45</td>
-            <td><span class="score score-med">● 76</span></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
 </div>
 
 <!-- FEATURES -->
@@ -298,32 +221,24 @@
 
     <div class="steps">
       <div class="step fade-in">
-        <div class="step-num">01</div>
-        <div>
-          <h3>Buy once, get instant access</h3>
-          <p>Complete the one-time purchase. You'll receive an email to set your password — access is immediate. No waiting, no approval.</p>
-        </div>
+        <div class="step-num">1</div>
+        <h3>Buy once, get instant access</h3>
+        <p>Complete the one-time purchase. You'll receive an email to set your password — access is immediate.</p>
       </div>
       <div class="step fade-in">
-        <div class="step-num">02</div>
-        <div>
-          <h3>Define your target customer</h3>
-          <p>Tell the tool who you're looking for — industry, company size, location, job titles. The more specific you are, the better the results.</p>
-        </div>
+        <div class="step-num">2</div>
+        <h3>Define your target customer</h3>
+        <p>Tell the tool who you're looking for — industry, size, location, job titles. The more specific, the better.</p>
       </div>
       <div class="step fade-in">
-        <div class="step-num">03</div>
-        <div>
-          <h3>AI generates your lead list</h3>
-          <p>AI finds matching companies and contacts, scores each lead for fit, and surfaces the best ones at the top.</p>
-        </div>
+        <div class="step-num">3</div>
+        <h3>AI generates your lead list</h3>
+        <p>AI finds matching companies and contacts, scores each for fit, and surfaces the best ones at the top.</p>
       </div>
       <div class="step fade-in">
-        <div class="step-num">04</div>
-        <div>
-          <h3>Export and start reaching out</h3>
-          <p>Download your list as a CSV and import it into your CRM or outreach tool. Your leads are ready to contact.</p>
-        </div>
+        <div class="step-num">4</div>
+        <h3>Export and start reaching out</h3>
+        <p>Download as CSV and import into your CRM or outreach tool. Ready to contact.</p>
       </div>
     </div>
   </div>
@@ -389,4 +304,31 @@
     <div style="font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent);margin-bottom:12px;">Have questions?</div>
     <h2 style="font-size:clamp(24px,3.5vw,36px);font-weight:800;letter-spacing:-1px;color:var(--text);margin-bottom:12px;">We're here to help</h2>
     <p style="font-size:15px;color:var(--text2);line-height:1.7;margin-bottom:28px;">Not sure if Leads Generator is right for you? Ask us anything — we reply within 24 hours.</p>
-    <a href="mailto:julia.utomo@gmail.com" style="display:inl
+    <a href="mailto:julia.utomo@gmail.com" style="display:inline-flex;align-items:center;gap:6px;background:var(--text);color:#F7F6F2;font-family:inherit;font-size:14.5px;font-weight:600;padding:13px 28px;border-radius:100px;text-decoration:none;transition:opacity 0.2s;" onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">Contact us →</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo"><em>Simplifying</em>Data</div>
+    <div class="footer-copy">© 2026 SimplifyingData · <a href="/" style="color:var(--text3);text-decoration:none;">All tools</a></div>
+  </div>
+</footer>
+
+<script>
+  document.documentElement.classList.add('js-ready');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        const siblings = e.target.parentElement.querySelectorAll('.fade-in');
+        siblings.forEach((s,i) => { s.style.transitionDelay = `${i * 60}ms`; });
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
