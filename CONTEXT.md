@@ -1,24 +1,29 @@
 # SimplifyingData — Project Context
 
-## Checkpoint — 2026-06-13 (latest)
+## Checkpoint — 2026-06-16 (latest)
 
 ### What's shipped
 - ✅ Landing page (`index.html`) — single-file, deployed on Vercel at simplifyingdata.co
 - ✅ Custom domain `simplifyingdata.co` via Cloudflare (DNS-only, no proxy — avoids SSL errors)
 - ✅ Supabase waitlist form — stores emails in `waitlist` table (project: `pyuvofppbfuytkcazgwh`)
 - ✅ BizAnalyst AI product card with $199 one-time pricing
-- ✅ Buy button wired to Lemon Squeezy checkout URL
+- ✅ Leads Generator product card with $199 one-time pricing
+- ✅ Both buy buttons wired to Lemon Squeezy checkout URLs
 - ✅ Demo link updated to `bizanalyst-demo.vercel.app`
 - ✅ Fade-in animation fix — uses `.js-ready` class so content always visible if JS fails
 - ✅ Canonical + OG tags for simplifyingdata.co
 - ✅ Lemon Squeezy account approved (store: simplifyingdata)
-- ✅ Full payment → provisioning flow working end-to-end (tested with wearcada@gmail.com)
-- ✅ Transactional email handled via Resend — managed in AI Biz session
-- ✅ Supabase redirect URL confirmed working
+- ✅ Central email service at `simplifyingdata.co/api/send-email` — handles Resend for all products
+- ✅ BizAnalyst purchase → BizAnalyst-branded welcome email ✅
+- ✅ Leads Generator purchase → SimplifyingLeads-branded welcome email ✅
+- ✅ Supabase Site URL updated to `https://simplifyingdata.co` (product-neutral fallback)
+- ✅ Supabase Redirect URLs: `bizanalyst.vercel.app` + `simplifying-leads.vercel.app`
+- ✅ Custom tool card: white button + SimplifyingData wordmark
 
 ### Pending
-- ✅ Leads Generator product card added to landing page ($199 one-time)
-- ⏳ Leads Generator — build the actual product (same provisioning flow as BizAnalyst)
+- ⏳ BizAnalyst session: add product ID filter (skip orders where product_id ≠ 1125235) — low priority since Railway already filters on its end
+- ⏳ SimplifyingLeads session: fix `redirect_to` in `generate_recovery_link` — should point to `https://simplifying-leads.vercel.app`, not `simplifyingdata.co`
+- ⏳ SimplifyingLeads session: fix `ensure_client_row_by_email` using wrong Supabase API endpoint
 
 ---
 
@@ -27,19 +32,32 @@
 ### Payment & Provisioning Flow
 ```
 Customer buys on simplifyingdata.co (Lemon Squeezy checkout)
-  → LemonSqueezy POST to bizanalyst.vercel.app/api/webhook
-  → Verifies HMAC-SHA256 signature
-  → Creates Supabase auth user (inviteUserByEmail → sends set-password email)
-  → Inserts biz_clients row (auth_user_id, vercel_url='bizanalyst.vercel.app')
-  → Customer clicks email link → sets password → lands on dashboard
+  → LemonSqueezy fires order_created to ALL store webhooks
+
+BizAnalyst order (product_id 1125235):
+  → bizanalyst.vercel.app/api/webhook processes it
+  → Railway webhook receives but skips (product_id ≠ 1143694)
+  → BizAnalyst webhook calls simplifyingdata.co/api/send-email (central mailer)
+  → Central mailer sends BizAnalyst-branded welcome email via Resend
+
+Leads Generator order (product_id 1143694):
+  → Railway webhook (web-production-f0838.up.railway.app) processes it
+  → BizAnalyst webhook receives but should skip (product ID filter — pending)
+  → Railway generates Supabase recovery link, calls simplifyingdata.co/api/send-email
+  → Central mailer sends SimplifyingLeads-branded welcome email via Resend
 ```
+
+### Webhook Behavior (important)
+- Lemon Squeezy sends `order_created` to ALL webhooks for every purchase — this is normal
+- Two deliveries per order in Lemon Squeezy dashboard = expected, not a bug
+- Each webhook is responsible for filtering by its own product_id
 
 ### Keys & Secrets
 | Key | Value | Where |
 |-----|-------|-------|
-| `RESEND_API_KEY` | *(see Vercel env vars — do not store here)* | SimplifyingData Vercel |
-| `INTERNAL_API_KEY` | `sd-internal-2026` | SimplifyingData Vercel + BizAnalyst Vercel |
-| `CENTRAL_EMAIL_URL` | `https://simplifyingdata.co/api/send-email` | BizAnalyst Vercel |
+| `RESEND_API_KEY` | *(see Vercel env vars — do not store here)* | SimplifyingData Vercel only |
+| `INTERNAL_API_KEY` | `sd-internal-2026` | SimplifyingData Vercel + Railway |
+| `CENTRAL_EMAIL_URL` | `https://simplifyingdata.co/api/send-email` | Railway env var |
 
 ### Tools & Services
 | Service | Purpose | Notes |
@@ -55,34 +73,4 @@ Customer buys on simplifyingdata.co (Lemon Squeezy checkout)
 - **Leads Generator Webhook URL:** `https://web-production-f0838.up.railway.app/webhook/lemonsqueezy`
 - **Leads Generator Webhook Secret:** `sl-webhook-2026-secret` (stored as env var on Railway)
 - **Leads Generator App:** `https://simplifying-leads.vercel.app/` (frontend on Vercel, backend on Railway)
-- **Webhook secret:** `bizanalyst-webhook-2026` (stored as Vercel env var `LEMON_SQUEEZY_WEBHOOK_SECRET`)
-- **Webhook URL:** `https://bizanalyst.vercel.app/api/webhook`
-- **Event:** `order_created`
-
-### Supabase Tables (this project touches)
-| Table | Access | Purpose |
-|-------|--------|---------|
-| `waitlist` | Insert-only (anon) | Stores emails from landing page form |
-| `auth.users` | Written by webhook (service role) | One per paying customer |
-| `biz_clients` | Written by webhook (service role) | Links auth user to dashboard |
-
-### Supabase Keys
-- **Anon key** (in index.html): `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...` (safe to expose)
-- **Service role key**: stored only as Vercel env var `SUPABASE_SERVICE_ROLE_KEY` on bizanalyst project
-
----
-
-## Files
-| File | Purpose |
-|------|---------|
-| `index.html` | Entire landing page — HTML + CSS + JS, single file |
-| `CONTEXT.md` | This file |
-
----
-
-## Cowork Session Structure
-| Session | Repo | Handles |
-|---------|------|---------|
-| SimplifyingData (this) | `juliautomo/simplifyingdata` | Landing page, central email service, Lemon Squeezy config, platform-level changes |
-| BizAnalyst | `juliautomo/bizanalyst` | Dashboard, BizAnalyst webhook, Supabase schema, BizAnalyst bug fixes |
-| SimplifyingLeads | (Railway) | Leads Generator webh
+- **Webhook secret:** `bizanalyst-webhook-2026` (
