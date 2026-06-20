@@ -1,11 +1,10 @@
 # SimplifyingData — Project Context
 
-## Checkpoint — 2026-06-16 (updated)
+## Checkpoint — 2026-06-20 (updated)
 
 ### What's shipped
 - ✅ Landing page (`index.html`) — deployed at simplifyingdata.co
 - ✅ Custom domain `simplifyingdata.co` via Cloudflare (DNS-only, no proxy)
-- ✅ Supabase waitlist form — stores emails in `waitlist` table (project: `pyuvofppbfuytkcazgwh`)
 - ✅ Central email service at `simplifyingdata.co/api/send-email` — handles Resend for all products
 - ✅ BizAnalyst purchase → BizAnalyst-branded welcome email ✅
 - ✅ Leads Generator purchase → SimplifyingLeads-branded welcome email ✅
@@ -19,6 +18,11 @@
 - ✅ BizAnalyst-specific sections removed from homepage (mockup, "Three steps")
 - ✅ Contact section ("Have questions?") on all three pages → julia.utomo@gmail.com
 - ✅ "Learn more →" buttons on homepage product cards (not direct checkout)
+- ✅ "Get early access" waitlist section removed (Supabase form + JS cleaned up)
+- ✅ Nav CTA updated to "Contact us" → #contact
+- ✅ "Why us" section reworked for small business owners:
+  - Headline: "Built for owners who do it all"
+  - Cards: Always know your numbers / Find customers without the grind / Decide faster / Cost-efficient by design
 
 ### Pricing (current)
 | Product | Price | Trial |
@@ -129,4 +133,4 @@ git clone https://<token>@github.com/juliautomo/simplifyingdata.git repo
 cp <updated file> repo/
 cd repo && git config user.email "julia.utomo@gmail.com" && git config user.name "Julia" && git add -A && git commit -m "message" && git push origin main
 ```
-GitHub token: *(stored locally — regenerate at github.com/settings/tokens if expired, needs `repo` scope)
+GitHub token: *(stored locally — regenerate at github.com/settings/tokens if expired, needs `repo` scope)*
