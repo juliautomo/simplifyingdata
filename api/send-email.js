@@ -1,5 +1,5 @@
 // Central email service for all SimplifyingData products
-// POST { product, email, name, link, type }
+// POST { product, email, name, link, billing_url?, type }
 // Header: x-api-key: <INTERNAL_API_KEY>
 
 const RESEND_API_KEY = process.env.RESEND_API_KEY;
@@ -136,6 +136,4 @@ function buildWelcomeEmail(brand, firstName, link, billing_url) {
       </table>
     </td></tr>
   </table>
-</body>
-</html>`;
-}
+</body
